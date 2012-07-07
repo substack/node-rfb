@@ -4,7 +4,7 @@ var spawn = require('child_process').spawn;
 
 var img = __dirname + '/../data/linux-0.2.img';
 assert.ok(
-    path.existsSync(img),
+    fs.existsSync(img),
     '\n\nImage not found. Fetch it:\n\n'
     + '    wget http://wiki.qemu.org/download/linux-0.2.img.bz2'
     + ' -O ' + img + '\n\n'
