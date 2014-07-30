@@ -135,14 +135,19 @@ module.exports = function (opts) {
         });
     };
 
-    self.pointer = function (x, y, mask) {
-        Put()
-            .word8(5)
-            .word8(mask)
-            .word16be(x)
-            .word16be(y)
-            .write(self)
-        ;
+    self.copyText = function (text) {
+        var l = text.length;
+
+        var p = Put()
+            .word8(constants.clientMsgTypes.cutText)
+            .pad(3)
+            .word32be(l);
+
+        for (var i = 0; i < l; ++i) {
+            p.word8( text.charCodeAt(i) );
+        }
+
+        p.write(self);
     };
     
     return self;
